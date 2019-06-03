@@ -192,24 +192,7 @@ module.exports = class Viewer {
 
         const scene = gltf.scene || gltf.scenes[0];
         
-                scene.traverse(function(child) {
-                    if (child.isMesh) {
-                        // child.castShadow = true;
-                        // child.receiveShadow = false;
-                        // child.flatshading = true;
-                var material = new THREE.MeshToonMaterial({
-                  shininess: 0,
-                  skinning: true,
-                  color: child.material.color,
-                   side: THREE.DoubleSide
-                  // opacity: 0.1,
-                  // transparent: true,
-                  // depthWrite: false,
-                });
-                child.material = material;
-                      child.material.needsUpdate = true;
-                    }
-                });
+
         
         
         const clips = gltf.animations || [];
@@ -476,7 +459,24 @@ module.exports = class Viewer {
     }
 
     traverseMaterials(this.content, (material) => {
-      material.wireframe = this.state.wireframe;
+//       material.wireframe = this.state.wireframe;
+//                       scene.traverse(function(child) {
+//                     if (child.isMesh) {
+                        // child.castShadow = true;
+                        // child.receiveShadow = false;
+                        // child.flatshading = true;
+                var material_ = new THREE.MeshToonMaterial({
+                  shininess: 0,
+                  skinning: true,
+                  color: material.color,
+                   side: THREE.DoubleSide
+                  // opacity: 0.1,
+                  // transparent: true,
+                  // depthWrite: false,
+                });
+                material = material_;
+                    }
+                });
     });
 
     this.content.traverse((node) => {
