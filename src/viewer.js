@@ -207,6 +207,7 @@ module.exports = class Viewer {
                   // depthWrite: false,
                 });
                 child.material = material;
+                      child.material.needsUpdate = true;
                     }
                 });
         
