@@ -191,6 +191,26 @@ module.exports = class Viewer {
       loader.load(url, (gltf) => {
 
         const scene = gltf.scene || gltf.scenes[0];
+        
+                scene.traverse(function(child) {
+                    if (child.isMesh) {
+                        // child.castShadow = true;
+                        // child.receiveShadow = false;
+                        // child.flatshading = true;
+                var material = new THREE.MeshToonMaterial({
+                  shininess: 0,
+                  skinning: true,
+                  color: child.material.color,
+                   side: THREE.DoubleSide
+                  // opacity: 0.1,
+                  // transparent: true,
+                  // depthWrite: false,
+                });
+                child.material = material;
+                    }
+                });
+        
+        
         const clips = gltf.animations || [];
         this.setContent(scene, clips);
 
