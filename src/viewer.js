@@ -493,6 +493,9 @@ module.exports = class Viewer {
                 material = material_;
                     }
                 });
+    
+         material.needsUpdate = true;
+
     });
 
     this.content.traverse((node) => {
@@ -717,24 +720,39 @@ module.exports = class Viewer {
     // dispose textures
     traverseMaterials( this.content, (material) => {
 
-      MAP_NAMES.forEach( (map) => {
+//       MAP_NAMES.forEach( (map) => {
 
-        if (material[ map ]) material[ map ].dispose();
+//         if (material[ map ]) material[ map ].dispose();
 
-      } );
+//       } );
 
-    } );
+//     } );
 
-  }
+//   }
+      
+                      var material_ = new THREE.MeshToonMaterial({
+                  shininess: 0,
+                  skinning: true,
+                  color: material.color,
+                   side: THREE.DoubleSide
+                  // opacity: 0.1,
+                  // transparent: true,
+                  // depthWrite: false,
+                });
+                material = material_;
+                    }
+                });
+    
+         material.needsUpdate = true;
 
 };
 
 function traverseMaterials (object, callback) {
-  object.traverse((node) => {
-    if (!node.isMesh) return;
-    const materials = Array.isArray(node.material)
-      ? node.material
-      : [node.material];
-    materials.forEach(callback);
-  });
+//   object.traverse((node) => {
+//     if (!node.isMesh) return;
+//     const materials = Array.isArray(node.material)
+//       ? node.material
+//       : [node.material];
+//     materials.forEach(callback);
+//   });
 }
