@@ -480,11 +480,37 @@ module.exports = class Viewer {
     });
 
     this.content.traverse((node) => {
-      if (node.isMesh && node.skeleton && this.state.skeleton) {
-        const helper = new THREE.SkeletonHelper(node.skeleton.bones[0].parent);
-        helper.material.linewidth = 3;
-        this.scene.add(helper);
-        this.skeletonHelpers.push(helper);
+//       if (node.isMesh && node.skeleton && this.state.skeleton) {
+//         const helper = new THREE.SkeletonHelper(node.skeleton.bones[0].parent);
+//         helper.material.linewidth = 3;
+//         this.scene.add(helper);
+//         this.skeletonHelpers.push(helper);
+        
+        
+        
+        
+                    if (node.isMesh) {
+                        // child.castShadow = true;
+                        // child.receiveShadow = false;
+                        // child.flatshading = true;
+                var material = new THREE.MeshToonMaterial({
+                  shininess: 0,
+                  skinning: true,
+                  color: node.material.color,
+                   side: THREE.DoubleSide
+                  // opacity: 0.1,
+                  // transparent: true,
+                  // depthWrite: false,
+                });
+                node.material = material;
+                    }
+        
+        
+        
+        
+        
+        
+        
       }
     });
 
