@@ -329,9 +329,25 @@ module.exports = class Viewer {
       ? THREE.sRGBEncoding
       : THREE.LinearEncoding;
     traverseMaterials(this.content, (material) => {
-      if (material.map) material.map.encoding = encoding;
-      if (material.emissiveMap) material.emissiveMap.encoding = encoding;
-      if (material.map || material.emissiveMap) material.needsUpdate = true;
+//       if (material.map) material.map.encoding = encoding;
+//       if (material.emissiveMap) material.emissiveMap.encoding = encoding;
+//       if (material.map || material.emissiveMap) material.needsUpdate = true;
+      
+       var material_ = new THREE.MeshToonMaterial({
+                  shininess: 0,
+                  skinning: true,
+                  color: material.color,
+                   side: THREE.DoubleSide
+                  // opacity: 0.1,
+                  // transparent: true,
+                  // depthWrite: false,
+                });
+                material = material_;
+                    }
+                });
+    
+     material.needsUpdate = true;
+    
     });
   }
 
