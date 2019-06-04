@@ -9,13 +9,17 @@ Preview glTF 2.0 models in WebGL using three.js and a drag-and-drop interface.
 
 ## Quickstart
 
+### FBX TO GLTF 
+(recommended)
+https://github.com/facebookincubator/FBX2glTF/releases
+
+
 ### Web
 
 ```
 npm install
 npm run dev
 ```
-
 ### Desktop (Electron)
 
 To build the desktop application, run:
